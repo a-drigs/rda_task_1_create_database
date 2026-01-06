@@ -1,11 +1,11 @@
-CREATE DATABASE SHOP_DB;
+CREATE DATABASE ShopDB;
 
-USE SHOP_DB;
+USE ShopDB;
 
 CREATE TABLE Products (
     ID INT PRIMARY KEY AUTO_INCREMENT,
     Name VARCHAR(50),
-    Description VARCHAR(100),
+    Description VARCHAR(50),
     Price INT,
     WarehouseAmount INT
 );
@@ -15,20 +15,20 @@ CREATE TABLE Customers (
     FirstName VARCHAR(50),
     LastName VARCHAR(50),
     Email VARCHAR(50),
-    Address VARCHAR(100)
+    Address VARCHAR(50)
 );
 
 CREATE TABLE Orders (
     ID INT PRIMARY KEY AUTO_INCREMENT,
     CustomerID INT,
-    Date DATETIME,
-    FOREIGN KEY (CustomerID) REFERENCES Customers(ID)
+    Date DATE,
+    FOREIGN KEY (CustomerID) REFERENCES Customers(ID) ON DELETE SET NULL
 );
 
 CREATE TABLE OrderItems (
     ID INT PRIMARY KEY AUTO_INCREMENT,
     OrderID INT,
     ProductID INT,
-    FOREIGN KEY (OrderID) REFERENCES Orders(ID),
-    FOREIGN KEY (ProductID) REFERENCES Products(ID)
+    FOREIGN KEY (OrderID) REFERENCES Orders(ID) ON DELETE SET NULL,
+    FOREIGN KEY (ProductID) REFERENCES Products(ID) ON DELETE SET NULL
 );
